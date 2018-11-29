@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+    - "8080:80"
+    volumes:
+      - ./code:/code
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/log:/var/log/nginx
+
+
+  php:
+    image: php:7.1.24-fpm-alpine
