@@ -9,9 +9,20 @@ services:
     - ./code:/code
     - ./nginx/conf.d:/etc/nginx/conf.d
     - ./nginx/log:/var/log/nginx
+    depends_on:
+      - php
 
 
   php:
     image: php:7.1.24-fpm-alpine
     volumes:
     - ./code:/code
+    - ./php/extensions:/usr/local/lib/php/extensions/no-debug-non-zts-20160303
+    - ./php/conf:/usr/local/etc/php
+    - ./php/conf/conf.d:/usr/local/etc/php/conf.d
+    command:
+    - /bin/sh
+    - -c
+    - |
+      docker-php-ext-install pdo_mysql bcmath mb_string
+      php-fpm
