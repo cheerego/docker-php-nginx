@@ -24,5 +24,5 @@ services:
     - /bin/sh
     - -c
     - |
-      docker-php-ext-install pdo_mysql bcmath mb_string
+      docker-php-ext-install pdo_mysql
       php-fpm
